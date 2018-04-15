@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Yasushi Kobayashi <ptpadan@gmail.com>
 
 RUN apt-get update && \
-  apt-get install -y wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev language-pack-ja-base language-pack-en && \
+  apt-get install -y curl wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev language-pack-ja-base language-pack-en && \
   rm -rf /var/lib/apt/lists/*
 
 # setup nodejs
