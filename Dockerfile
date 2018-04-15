@@ -21,6 +21,7 @@ WORKDIR /usr/local
 RUN wget -O - https://github.com/golang/go/archive/go${GO_V}.tar.gz | tar zxf -
 
 # setup python
+ENV PYTHONIOENCODING "utf-8"
 ENV PYTHON_V 3.6.0
 WORKDIR /root/
 RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.tgz | tar zxf - && \
@@ -31,7 +32,6 @@ RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.t
   pip3.6 install --upgrade pip && \
   pip3.6 install selenium && \
   pip3.6 install faker
-ENV PYTHONIOENCODING "utf-8"
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
