@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Yasushi Kobayashi <ptpadan@gmail.com>
 
 RUN apt-get update && \
-  apt-get install -y wget git unzip build-essential gcc zlib1g-dev libssl-dev
+  apt-get install -y wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev
 
 # setup nodejs
 ENV NODE_V=v8.1.0
