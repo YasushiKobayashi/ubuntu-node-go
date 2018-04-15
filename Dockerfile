@@ -18,7 +18,7 @@ ENV GOPATH=/work/go
 ENV PATH=$PATH:$GOPATH/bin
 ENV GO_V=1.10
 WORKDIR /usr/local
-RUN wget -O - https://dl.google.com/go/go${GO_V}.linux-arm64.tar.gz | tar zxf -
+RUN wget -O - https://storage.googleapis.com/golang/go${GO_V}.linux-amd64.tar.gz | tar zxf -
 
 # setup python
 ENV PYTHONIOENCODING "utf-8"
