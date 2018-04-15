@@ -8,33 +8,32 @@ RUN apt-get update && \
 ENV NODE_V=v8.1.0
 ENV PATH=/usr/local/node-${NODE_V}-linux-x64/bin:$PATH
 WORKDIR /usr/local
-RUN wget https://nodejs.org/download/release/${NODE_V}/node-${NODE_V}-linux-x64.tar.gz && \
-  tar -zxvf node-${NODE_V}-linux-x64.tar.gz
-RUN npm i -g yarn
+RUN wget -O - https://nodejs.org/download/release/${NODE_V}/node-${NODE_V}-linux-x64.tar.gz | tar zxf - && \
+  npm i -g yarn
 
-# setup golang glide
-WORKDIR /usr/local
-ENV GO_V=1.10
+# setup golang
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH=/work/go
 ENV PATH=$PATH:$GOPATH/bin
-RUN wget https://github.com/golang/go/archive/go${GO_V}.tar.gz && \
-  tar -zxvf go${GO_V}.tar.gz
+ENV GO_V=1.10
+WORKDIR /usr/local
+RUN wget -O - https://github.com/golang/go/archive/go${GO_V}.tar.gz | tar zxf -
 
 # setup python
 WORKDIR /root/
-RUN wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz && \
-  tar zxf Python-3.6.0.tgz && \
-  cd Python-3.6.0 && \
+RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.tgz | tar zxf - && \
+  cd Python-${PYTHON_V} && \
   ./configure && \
-  make altinstall
-ENV PYTHONIOENCODING "utf-8"
-RUN pip3.6 install selenium && \
+  make altinstall && \
+  make clean && \
+  pip3.6 install selenium && \
   pip3.6 install faker
+ENV PYTHONIOENCODING "utf-8"
 
 # setup lang ja
 RUN apt-get update && \
-  apt-get install -y language-pack-ja-base language-pack-en
+  apt-get install -y language-pack-ja-base language-pack-en && \
+  rm -rf /var/lib/apt/lists/*
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
