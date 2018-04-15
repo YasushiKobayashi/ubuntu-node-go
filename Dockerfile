@@ -2,7 +2,8 @@ FROM ubuntu:16.04
 MAINTAINER Yasushi Kobayashi <ptpadan@gmail.com>
 
 RUN apt-get update && \
-  apt-get install -y wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev
+  apt-get install -y wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev language-pack-ja-base language-pack-en && \
+  rm -rf /var/lib/apt/lists/*
 
 # setup nodejs
 ENV NODE_V=v8.1.0
@@ -31,11 +32,6 @@ RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.t
   pip3.6 install selenium && \
   pip3.6 install faker
 ENV PYTHONIOENCODING "utf-8"
-
-# setup lang ja
-RUN apt-get update && \
-  apt-get install -y language-pack-ja-base language-pack-en && \
-  rm -rf /var/lib/apt/lists/*
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
