@@ -1,0 +1,4 @@
+- base image is ubuntu:16.04
+- golang
+- nodejs
+- python selenium
