@@ -20,6 +20,7 @@ WORKDIR /usr/local
 RUN wget -O - https://github.com/golang/go/archive/go${GO_V}.tar.gz | tar zxf -
 
 # setup python
+ENV PYTHON_V 3.6.0
 WORKDIR /root/
 RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.tgz | tar zxf - && \
   cd Python-${PYTHON_V} && \
