@@ -27,7 +27,7 @@ RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.t
   ./configure && \
   make altinstall && \
   make clean && \
-  pip install --upgrade pip && \
+  pip3.6 install --upgrade pip && \
   pip3.6 install selenium && \
   pip3.6 install faker
 ENV PYTHONIOENCODING "utf-8"
