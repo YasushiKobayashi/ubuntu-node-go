@@ -3,10 +3,10 @@ MAINTAINER Yasushi Kobayashi <ptpadan@gmail.com>
 
 RUN apt-get update && \
   apt-get install -y curl wget git unzip build-essential gcc zlib1g-dev libssl-dev ocaml libelf-dev language-pack-ja-base language-pack-en && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # setup nodejs
-ENV NODE_V=v8.1.0
+ENV NODE_V=v8.9.4
 ENV PATH=/usr/local/node-${NODE_V}-linux-x64/bin:$PATH
 WORKDIR /usr/local
 RUN wget -O - https://nodejs.org/download/release/${NODE_V}/node-${NODE_V}-linux-x64.tar.gz | tar zxf - && \
@@ -30,8 +30,8 @@ RUN wget -O - https://www.python.org/ftp/python/${PYTHON_V}/Python-${PYTHON_V}.t
   make altinstall && \
   make clean && \
   pip3.6 install --upgrade pip && \
-  pip3.6 install selenium && \
-  pip3.6 install faker
+  pip3.6 install --no-cache-dir selenium && \
+  pip3.6 install --no-cache-dir faker
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
